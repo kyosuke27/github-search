@@ -1,0 +1,5 @@
+{
+	"dependencies": {
+		"@js-primer/local-server": "^1.0.2"
+	}
+}
