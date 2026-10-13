@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub User Info</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="search-panel" aria-labelledby="page-title">
+        <h1 id="page-title">Github User Info</h1>
+        <div class="search-controls">
+          <label class="visually-hidden" for="search-type">検索対象</label>
+          <select name="search-type" id="search-type">
+            <option value="input-repo">リポジトリ検索</option>
+          </select>
+          <label class="visually-hidden" for="userId">GitHubユーザー名</label>
+          <input type="text" id="userId" value="js-primer-example" />
+          <button type="button" onclick="main()">Get user info</button>
+          <button type="button" onclick="fetchUserRepository()">
+            Get user Repository
+          </button>
+        </div>
+      </section>
+      <section id="result" class="result-panel" aria-live="polite"></section>
+    </main>
+    <script src="view-templates.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
