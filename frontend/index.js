@@ -79,3 +79,8 @@ function getProgramIcon(program) {
   console.log(`${program} : ${map[program]}`);
   return map[program] ?? "";
 }
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js");
+  });
+}
