@@ -1,0 +1,169 @@
+/* 検索欄にある入力部品の高さ、枠線、角丸を統一する。 */
+.search-controls input,
+.search-controls select,
+.search-controls button {
+  min-width: 0;
+  min-height: 2.75rem;
+  border: 1px solid #8c959f;
+  border-radius: 0.375rem;
+}
+
+/* ユーザー名入力欄とセレクトボックスに内側余白、文字色、背景色を設定する。 */
+.search-controls input,
+.search-controls select {
+  padding: 0.625rem 0.75rem;
+  color: #1f2328;
+  background: #ffffff;
+}
+
+/*
+ * 二つの検索ボタンを白文字と緑背景で主要な操作として表示する。
+ * pointerカーソルと短い色変化を設定し、クリック可能であることを伝える。
+ */
+.search-controls button {
+  padding: 0.625rem 1rem;
+  border-color: #1f883d;
+  color: #ffffff;
+  font-weight: 600;
+  background: #1f883d;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease;
+}
+
+/* マウスを重ねたボタンを少し濃い緑色にして、ホバー状態を示す。 */
+.search-controls button:hover {
+  border-color: #1a7f37;
+  background: #1a7f37;
+}
+
+/*
+ * キーボード操作で入力部品または結果内リンクへ移動したとき、青い枠を表示する。
+ * focus-visibleを使うことで、通常のマウスクリックでは不要な枠を抑制する。
+ */
+.search-controls :is(input, select, button):focus-visible,
+.result-panel a:focus-visible {
+  outline: 3px solid #54aeff;
+  outline-offset: 2px;
+}
+
+/* ユーザーのアバター画像と詳細情報を横並びにする。 */
+.user-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+/* アバター画像を縮ませず、枠付きの円形に切り抜いて表示する。 */
+.user-card__avatar {
+  flex: 0 0 auto;
+  border: 1px solid #d0d7de;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ユーザー詳細へ残りの横幅を割り当て、長い内容による横方向のはみ出しを防ぐ。 */
+.user-card__content {
+  min-width: 0;
+  flex: 1;
+}
+
+/* ユーザー名とリポジトリ一覧見出しの余白、文字サイズ、行高を統一する。 */
+.user-card__name,
+.repository-list__title {
+  margin: 0;
+  font-size: 1.375rem;
+  line-height: 1.3;
+}
+
+/* GitHubログイン名を表示名より小さく、控えめな色と太さで表示する。 */
+.user-card__login {
+  color: #59636e;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+/* 見出しと詳細情報リストの間に上余白を設ける。 */
+.detail-list {
+  margin: 1rem 0 0;
+}
+
+/* Locationなどの項目名と値を2列のグリッドとして配置する。 */
+.detail-list__item {
+  display: grid;
+  grid-template-columns: minmax(7rem, 0.35fr) 1fr;
+  gap: 0.75rem;
+  padding-block: 0.375rem;
+}
+
+/* 詳細情報の項目名を控えめな色の太字にする。 */
+.detail-list dt {
+  color: #59636e;
+  font-weight: 600;
+}
+
+/* dd要素のブラウザ既定余白を削除し、長い値による横方向のはみ出しを防ぐ。 */
+.detail-list dd {
+  min-width: 0;
+  margin: 0;
+}
+
+/* 複数のリポジトリカードを1rem間隔のグリッドで縦方向へ並べる。 */
+.repository-list__items {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+/* 一つのリポジトリを枠線、角丸、白背景のカードとして表示する。 */
+.repository-card {
+  padding: 1.25rem;
+  border: 1px solid #d8dee4;
+  border-radius: 0.5rem;
+  background: #ffffff;
+}
+
+/* 各リポジトリ名をGitHubに近い青色の小見出しとして表示する。 */
+.repository-card__name {
+  margin: 0;
+  color: #0969da;
+  font-size: 1.125rem;
+}
+
+/*
+ * 結果内リンクを太字にして下線を見やすくする。
+ * 最大幅を親要素内に制限し、長いURLによるはみ出しを防ぐ。
+ */
+.result-panel a {
+  display: inline-block;
+  max-width: 100%;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+/* マウスを重ねたリンクの下線を太くし、ホバー状態を示す。 */
+.result-panel a:hover {
+  text-decoration-thickness: 0.14em;
+}
+
+/* 動きを減らすOS設定が有効な場合、ボタンの色変化アニメーションを無効にする。 */
+@media (prefers-reduced-motion: reduce) {
+  .search-controls button {
+    transition: none;
+  }
+}
+
+/* スマートフォンではユーザー情報と詳細項目を縦並びにして読みやすくする。 */
+@media (max-width: 520px) {
+  .user-card {
+    flex-direction: column;
+  }
+
+  .detail-list__item {
+    grid-template-columns: 1fr;
+    gap: 0.125rem;
+  }
+}

@@ -1,0 +1,64 @@
+/*
+ * HTML文書全体で使用する基本の表示設定。
+ * OS標準に近いフォントを使用し、文字色とページ背景色を統一する。
+ */
+:root {
+  color-scheme: light;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: #1f2328;
+  background: #f6f8fa;
+  font-synthesis: none;
+}
+
+/*
+ * paddingとborderをwidth、heightの内側に含める。
+ * 要素へ余白や枠を追加しても、指定した大きさを超えにくくする。
+ */
+* {
+  box-sizing: border-box;
+}
+
+/* 長い内容によってページの最小幅が不必要に広がることを防ぐ。 */
+html {
+  min-width: 0;
+}
+
+/*
+ * ブラウザ既定の外側余白を削除する。
+ * ページを最低でも画面の高さまで広げ、本文の行間を読みやすくする。
+ */
+body {
+  min-width: 0;
+  min-height: 100vh;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* フォーム部品でもページ本体と同じフォント設定を使用する。 */
+button,
+input,
+select {
+  font: inherit;
+}
+
+/* 通常のリンクをGitHubに近い青色で表示する。 */
+a {
+  color: #0969da;
+}
+
+/*
+ * labelを画面上では見えない1pxの領域へ隠す。
+ * display: noneは使わず、スクリーンリーダーが項目名を読み上げられる状態を保つ。
+ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

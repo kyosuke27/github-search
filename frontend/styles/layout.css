@@ -1,0 +1,76 @@
+/*
+ * アプリ全体の横幅を最大960pxに制限して中央へ配置する。
+ * 画面端との間に左右の余白を取り、上下にもページ余白を設ける。
+ */
+.app {
+  width: min(100% - 2rem, 960px);
+  margin-inline: auto;
+  padding-block: 2rem 4rem;
+}
+
+/*
+ * 検索領域と、内容が存在する結果領域をカードとして表示する。
+ * 結果が空の場合は :not(:empty) に一致しないため、空のカードは表示されない。
+ */
+.search-panel,
+.result-panel:not(:empty) {
+  border: 1px solid #d0d7de;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgb(31 35 40 / 8%);
+}
+
+/* 画面幅に応じて検索カード内の余白を1.25remから2remの間で変化させる。 */
+.search-panel {
+  padding: clamp(1.25rem, 4vw, 2rem);
+}
+
+/* 検索カードの主見出しについて、余白、文字サイズ、行の高さを調整する。 */
+.search-panel h1 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: 1.25;
+}
+
+/*
+ * セレクト、ユーザー名入力欄、二つのボタンを4列のグリッドで横並びにする。
+ * ユーザー名入力欄は1frを使い、利用可能な残りの横幅まで広がる。
+ */
+.search-controls {
+  display: grid;
+  grid-template-columns: minmax(10rem, auto) minmax(12rem, 1fr) auto auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/*
+ * JavaScriptによって内容が挿入された結果領域に余白を設ける。
+ * 長い説明文やURLは領域の外へはみ出さず、途中で折り返す。
+ */
+.result-panel:not(:empty) {
+  margin-top: 1.5rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  overflow-wrap: anywhere;
+}
+
+/* 結果領域の先頭要素が持つ上余白を削除し、カード上部の余白を一定にする。 */
+.result-panel > :first-child {
+  margin-top: 0;
+}
+
+/* 結果領域の末尾要素が持つ下余白を削除し、カード下部の余白を一定にする。 */
+.result-panel > :last-child {
+  margin-bottom: 0;
+}
+
+/* タブレットやスマートフォンではページ余白を小さくし、検索項目を縦一列にする。 */
+@media (max-width: 760px) {
+  .app {
+    width: min(100% - 1rem, 960px);
+    padding-block: 1rem 2rem;
+  }
+
+  .search-controls {
+    grid-template-columns: 1fr;
+  }
+}
