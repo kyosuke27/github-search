@@ -17,7 +17,6 @@ data "aws_iam_policy_document" "origin_bucket_policy" {
 
     actions = [
       "s3:GetObject",
-      "s3:PutObject",
     ]
 
     resources = [
